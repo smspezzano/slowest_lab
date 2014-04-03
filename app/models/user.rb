@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :inward_follows, :source => :follower
   has_many :followeds, :through => :outward_follows, :source => :followed
 
-  has_many :attendances
-
+  has_many :attendances,-> { includes :show}
+  
   def avatar
     a = read_attribute(:avatar)
     unless a
